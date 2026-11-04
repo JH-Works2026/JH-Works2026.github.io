@@ -1,0 +1,6 @@
+# app-ads.txt for Pocket Disc Golf (J&H Works LLC).
+# Must be served at the ROOT of the domain in the Play listing "Website" field:
+#   https://<your-site>/app-ads.txt   (NOT in a sub-folder; see PUBLISH-STEPS.md step 1)
+#   (AdMob > Apps > View all apps > app-ads.txt > "How to set up app-ads.txt" shows the exact line).
+#   Keep f08c47fec0942fa0 as is. The publisher ID is public, not a secret. Comment lines may stay.
+google.com, pub-5892343661939147, DIRECT, f08c47fec0942fa0
