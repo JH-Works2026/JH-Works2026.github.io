@@ -10,7 +10,11 @@
 </head>
 <body>
 <!--
-  STATUS: READY (dg-qa-community, job LISTING-ODDS, 2026-11-04). The PM publishes it; nothing here was pushed.
+  STATUS: READY (dg-qa-community, job LISTING-ODDS, 2026-11-04; re-synced to the in-game sheet order in job ODDS-SYNC,
+  2026-11-04, numbers re-dumped from 6102a35: unchanged). The PM publishes it; nothing here was pushed.
+  In-game sheet order (scripts/mobile/BoxOverlay.gd:104-118 at 6102a35): tier rows (name, %, owned x/y) -> pity line ->
+  "You always get something you don't own yet." -> "If a whole tier is owned, you get coins instead." -> RARITY_LINE ->
+  "Every item is also sold in the shop for coins." Keep each box section in that order.
   Every number below was read from the v1 build: branch claude/project-thread-14v6n7 @ 6102a35 (draft PR #157), version 1.0.0.
   Printed by a headless Godot 4.5.2 run of the real code (GameState.reward_pool(), MysteryBoxes.odds/tier_size,
   ShopCatalog.style_pool()) for the dates 2026-11-04 and 2026-11-20, and checked with a 1,000,000-box simulation of
@@ -49,10 +53,10 @@ can't be bought with coins or real money, and don't come from ads or coin packs.
 12 Box Tokens. You earn Box Tokens by playing: 2 for every finished nine-hole round, +1 for finishing under par, +1 per
 hole-in-one (up to 2 a round), and 10 once after your first round. From December 8, 2026, the free Season 1 track also
 gives 3 Box Tokens at levels 5, 10, 20 and 25. You can hold up to 99 Box Tokens.</p>
-<p>Every item in a box can also be bought in the shop with coins earned by playing. Rarity changes how a disc looks,
-never how it flies.</p>
-<p>Odds below are for game version 1.0.0 (updated November 4, 2026). The same odds are shown in the game before you
-open a box.</p>
+<p>Every item in a box can also be bought in the shop with coins earned by playing. Rarity changes looks only. Discs
+with the same flight numbers fly the same.</p>
+<p><strong>Game version 1.0.0. Updated November 4, 2026.</strong> The same odds, in the same order, are shown in the
+game on each box's odds sheet (See odds), and before you open a box type for the first time.</p>
 
 <h2>Fairway Box (1 disc)</h2>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table">
@@ -71,11 +75,15 @@ open a box.</p>
 </table>
 </div>
 <ul>
-  <li>No duplicates: the box picks a tier using the chances above, then one of the discs in that tier you don't own
-    yet, each equally likely. So the chance of a specific disc = tier chance / number of discs in that tier you don't
-    own yet.</li>
-  <li>Guarantee: if 9 Fairway Boxes in a row give no Rare or Legendary disc, the 10th is Rare (80%) or Legendary (20%).
-    The counter is saved and starts again when you get a Rare or Legendary.</li>
+  <li>Rare or better guaranteed within 10 boxes: if 9 Fairway Boxes in a row give no Rare or Legendary disc, the 10th
+    is Rare (80%) or Legendary (20%). The counter is saved and starts again when you get a Rare or Legendary. The game
+    shows how many boxes are left.</li>
+  <li>You always get something you don't own yet: the box picks a tier using the chances above, then one of the discs
+    in that tier you don't own yet, each equally likely. So the chance of a specific disc = tier chance / number of
+    discs in that tier you don't own yet.</li>
+  <li>If a whole tier is owned, you get coins instead (the last column).</li>
+  <li>Rarity changes looks only. Discs with the same flight numbers fly the same.</li>
+  <li>Every disc is also sold in the shop for coins.</li>
   <li>Over many boxes, with the guarantee, this works out to about 56.4% Common, 28.2% Uncommon, 12.3% Rare and
     3.1% Legendary (15.4% Rare or better; 10% without the guarantee).</li>
 </ul>
@@ -108,9 +116,13 @@ open a box.</p>
 </table>
 </div>
 <ul>
+  <li>Fancy or better guaranteed within 10 boxes: if 9 Style Boxes in a row give no Fancy or Premium trail, the 10th
+    is Fancy (80%) or Premium (20%). The counter is saved and starts again when you get a Fancy or Premium.</li>
+  <li>You always get something you don't own yet (same rule as the Fairway Box).</li>
+  <li>If a whole tier is owned, you get coins instead (the last column).</li>
+  <li>Rarity changes looks only. A trail never changes a throw.</li>
+  <li>Every trail is also sold in the shop for coins.</li>
   <li>Trails by tier: Standard: Sunset, Mint. Fancy: Violet, Glacier. Premium: Gold, Crimson.</li>
-  <li>No duplicates, same rule as the Fairway Box.</li>
-  <li>Guarantee: if 9 Style Boxes in a row give no Fancy or Premium trail, the 10th is Fancy (80%) or Premium (20%).</li>
   <li>Over many boxes, with the guarantee, this works out to about 69.1% Standard, 25.7% Fancy and 5.2% Premium
     (30.9% Fancy or better).</li>
   <li>Disc bags and disc carts are never in a Style Box in this version.</li>
